@@ -1,8 +1,8 @@
 const BASE_URL = 'http://localhost:3000';
 
 export default {
-  postComment(recipeId, comment, name) {
-    return fetch(`${BASE_URL}/recipes/${recipeId}/comments`, {
+  postComment(id, comment, name) {
+    return fetch(`${BASE_URL}/recipes/${id}/comments`, {
       method: 'POST',
       body: JSON.stringify({
         comment,
@@ -13,8 +13,8 @@ export default {
       },
     }).then(response => response.json());
   },
-  fetchComments(recipeId) {
-    return fetch(`${BASE_URL}/recipes/${recipeId}/comments`)
+  fetchComments(id) {
+    return fetch(`${BASE_URL}/recipes/${id}/comments`)
       .then(response => response.json());
   }
 }

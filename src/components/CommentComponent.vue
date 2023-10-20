@@ -24,7 +24,7 @@ export default {
         PreviousComments
     },
     props: {
-        recipeId: String,
+        id: String,
     },
     data() {
         return {
@@ -49,12 +49,12 @@ export default {
     methods: {
         async postComment() {
             this.isPostingComment = true;
-            const json = await commentService.postComment(this.recipeId, this.userComment, this.userName);
+            const json = await commentService.postComment(this.id, this.userComment, this.userName);
             console.log(json);
             this.successMessage = "";
         },
         async fetchComments() {
-            const data = await commentService.fetchComments(this.recipeId);
+            const data = await commentService.fetchComments(this.id);
             console.log(data);
             this.comments = data;
         },

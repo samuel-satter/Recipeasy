@@ -5,7 +5,7 @@
   <div>
     <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/category/:categoryId">Category</RouterLink>
-    <RouterLink to="/recipe/:recipeId">Recipe</RouterLink>
+    <RouterLink to="/recipe/:id">Recipe</RouterLink>
   </div>
 </template>
 

@@ -7,10 +7,10 @@
             <input type="text" id="searchbox" placeholder="Sök bland dina favoritrecept . . ." required>
             <input type="submit" value="Sök" id="btn" @click="fetchData">
         </div>
-        <main class="recipe-grid" v-for="recipe in recipes" :key="recipe.RecipeId">
+        <main class="recipe-grid" v-for="recipe in recipes" :key="recipe.id">
             <div class="grid-container gradient-background">
                 <h2 class="recipe-head">
-                    <RouterLink class="router-link" :to="`/recipe/${recipe.RecipeId}`">{{ recipe.name }}</RouterLink>
+                    <RouterLink class="router-link" :to="`/recipe/${recipe.id}`">{{ recipe.name }}</RouterLink>
                     <!-- <RatingComponent :avg-rating="`${recipe.ratings.length}`"> -->
                     <!-- </RatingComponent> -->
                 </h2>
@@ -43,7 +43,7 @@ export default {
             let inputSearchBox = document.getElementById("searchbox").value;
             this.recipes = null;
             console.log("klsdfjasdklfjasdklfklasdjljkasdfjfklasdfjkladsö", inputSearchBox)
-            const response = await fetch(`http://localhost:3000/recipe?RecipeId=${inputSearchBox}`);
+            const response = await fetch(`http://localhost:3000/recipe?id=${inputSearchBox}`);
             this.recipes = await response.json();
         }
     }

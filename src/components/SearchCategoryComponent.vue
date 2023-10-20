@@ -12,10 +12,10 @@
                 </div>
             </form>
         </div>
-        <div v-for="recipe in searchResult" :key="recipe.RecipeId">
+        <div v-for="recipe in searchResult" :key="recipe.id">
             <div class="grid-container gradient-background main">
                 <h2 class="recipe-head">
-                    <RouterLink class="router-link" :to="`/recipe/${recipe.RecipeId}`">{{ recipe.name }} </RouterLink>
+                    <RouterLink class="router-link" :to="`/recipe/${recipe.id}`">{{ recipe.name }} </RouterLink>
                     <RatingComponent :avg-rating="`${recipe.ratings.length}`">
                     </RatingComponent>
                 </h2>

@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class = "br"></div>
-        <RatingComponent :recipe-id="recipe.RecipeId" :ratings="recipe.ratings"></RatingComponent>
+        <RatingComponent :recipe-id="recipe.id" :ratings="recipe.ratings"></RatingComponent>
     </main>
 </template>
 <script>
@@ -28,16 +28,16 @@ export default {
     data() {
         return {
             recipe: "",
-            recipeId: "",
+            id: "",
             time: "MINUTER",
             nrOfIngredients: "INGREDIENSER"
         }
     },
     methods: {
         fetchData() {
-            console.log("hello this line was accessed",this.$route.params.RecipeId)
+            console.log("hello this line was accessed",this.$route.params.id)
             this.recipe = null;
-            fetch(`https://localhost:3000/recipes/${this.$route.params.RecipeId}`)
+            fetch(`https://localhost:3000/recipes/${this.$route.params.id}`)
                 .then((response) => response.json())
                 .then((data) => { this.recipe = data });
         }

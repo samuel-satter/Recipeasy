@@ -1,9 +1,9 @@
 import { RouterLink } from 'vue-router';
 <template>
     <div v-if="recipes">
-        <div v-for="recipe in recipes" :key="recipe.RecipeId">
+        <div v-for="recipe in recipes" :key="recipe.id">
             <h2>Recept:
-                <RouterLink class="router-link" :to="`/recipe/${recipe.RecipeId}`">{{ recipe.name }}</RouterLink>
+                <RouterLink class="router-link" :to="`/recipe/${recipe.id}`">{{ recipe.name }}</RouterLink>
                 <RatingComponent :avgRating="`${recipe.avgRating}`"></RatingComponent>
             </h2>
             <div><img :src="recipe.imageUrl" alt="recipe image"></div>

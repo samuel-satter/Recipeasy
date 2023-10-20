@@ -14,7 +14,7 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify(recipes))
     } else if(reqUrl.pathname.startsWith('/recipe')) {
         console.log(query)
-        const recipe = recipes.find(r => r.RecipeId === parseInt(query.RecipeId));
+        const recipe = recipes.find(r => r.id === parseInt(query.id));
         console.log(query, recipe)
         if(recipe) {
             res.statusCode = 200;
@@ -27,11 +27,20 @@ const server = http.createServer((req, res) => {
             res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
             res.end('Recipe not found')
         }
-    } else if(reqUrl.pathname ==='/categories') {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json')
-        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
-        res.end(JSON.stringify(categories))
+    } else if (reqUrl.pathname.startsWith('/categories')) {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+    
+      const categoryID = reqUrl.pathname.split('/').pop(); 
+      const categoryRecipes = recipes.filter(recipe => recipe.category === categoryID);
+    
+      if (categoryRecipes.length > 0) {
+        res.end(JSON.stringify(categoryRecipes));
+      } else {
+        res.end('No recipes found for the specified category');
+      }
+    
     } else {
         res.statusCode = 404;
         res.setHeader('Content-Type', 'text/plain')
@@ -45,7 +54,7 @@ server.listen(port, 'localhost', () => {
 });
 const recipes = [
     {
-      "RecipeId": 1,
+      "id": 1,
       "name": "Caprese Sallad",
       "categoryID": 1,
       "time": "10 minuter",
@@ -55,7 +64,7 @@ const recipes = [
       "image": "https://example.com/caprese_sallad.jpg"
     },
     {
-      "RecipeId": 2,
+      "id": 2,
       "name": "Pasta Aglio e Olio",
       "categoryID": 1,
       "time": "15 minuter",
@@ -65,7 +74,7 @@ const recipes = [
       "image": "https://example.com/pasta_aglio_e_olio.jpg"
     },
     {
-      "RecipeId": 3,
+      "id": 3,
       "name": "Bruschetta",
       "categoryID": 1,
       "time": "15 minuter",
@@ -75,7 +84,7 @@ const recipes = [
       "image": "https://example.com/bruschetta.jpg"
     },
     {
-      "RecipeId": 4,
+      "id": 4,
       "name": "Quesadillas",
       "categoryID": 2,
       "time": "10 minuter",
@@ -85,7 +94,7 @@ const recipes = [
       "image": "https://example.com/quesadillas.jpg"
     },
     {
-      "RecipeId": 5,
+      "id": 5,
       "name": "Cilantro Lime Chicken",
       "categoryID": 2,
       "time": "15 minuter",
@@ -95,7 +104,7 @@ const recipes = [
       "image": "https://example.com/cilantro_lime_chicken.jpg"
     },
     {
-      "RecipeId": 6,
+      "id": 6,
       "name": "Salsa",
       "categoryID": 2,
       "time": "10 minuter",
@@ -105,7 +114,7 @@ const recipes = [
       "image": "https://example.com/salsa.jpg"
     },
     {
-      "RecipeId": 7,
+      "id": 7,
       "name": "Vegetable Stir-Fry",
       "categoryID": 3,
       "time": "15 minuter",
@@ -115,7 +124,7 @@ const recipes = [
       "image": "https://example.com/vegetable_stir_fry.jpg"
     },
     {
-      "RecipeId": 8,
+      "id": 8,
       "name": "Teriyaki Chicken",
       "categoryID": 3,
       "time": "15 minuter",
@@ -125,7 +134,7 @@ const recipes = [
       "image": "https://example.com/teriyaki_chicken.jpg"
     },
     {
-        "RecipeId": 9,
+        "id": 9,
         "name": "Beef and Broccoli Stir-Fry",
         "categoryID": 3,
         "time": "15 minuter",

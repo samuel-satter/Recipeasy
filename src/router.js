@@ -15,7 +15,7 @@ const routes = [
         component: CategoryPage
     },
     {
-        path: '/recipe/:recipeId/',
+        path: '/recipe/:id/',
         name: 'recipe',
         component: RecipePage
     }
