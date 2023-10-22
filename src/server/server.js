@@ -15,12 +15,13 @@ const server = http.createServer((req, res) => {
     } else if(reqUrl.pathname.startsWith('/recipe')) {
         console.log(query)
         const recipe = recipes.find(r => r.id === parseInt(query.id));
-        console.log(query, recipe)
+        console.log("recipe:", recipe)
         if(recipe) {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json')
             res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
             res.end(JSON.stringify(recipe))
+            console.log("sending recipe", recipe)
         } else {
             res.statusCode = 404;
             res.setHeader('Content-Type', 'text/plain')
@@ -33,7 +34,7 @@ const server = http.createServer((req, res) => {
       res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
     
       const categoryID = reqUrl.pathname.split('/').pop(); 
-      const categoryRecipes = recipes.filter(recipe => recipe.category === categoryID);
+      const categoryRecipes = recipes.filter(recipe => recipe.categoryID === categoryID);
     
       if (categoryRecipes.length > 0) {
         res.end(JSON.stringify(categoryRecipes));
@@ -61,7 +62,7 @@ const recipes = [
       "ingredients": ["Färska tomater", "Mozzarellacheese", "Basilikablad", "Balsamvinäger"],
       "instructions": "Arrangera skivade tomater och mozzarella, toppa med basilikablad, ringla över balsamvinäger.",
       "ratings":[],
-      "image": "https://example.com/caprese_sallad.jpg"
+      "image": "http://example.com/caprese_sallad.jpg"
     },
     {
       "id": 2,
@@ -71,7 +72,7 @@ const recipes = [
       "ingredients": ["Spaghetti", "Vitlök", "Olivolja", "Chiliflingor", "Persilja"],
       "instructions": "Stek vitlök i olja, blanda med kokt pasta.",
       "ratings":[],
-      "image": "https://example.com/pasta_aglio_e_olio.jpg"
+      "image": "http://example.com/pasta_aglio_e_olio.jpg"
     },
     {
       "id": 3,
@@ -81,7 +82,7 @@ const recipes = [
       "ingredients": ["Baguette", "Tomater", "Basilika", "Vitlök", "Balsamvinäger"],
       "instructions": "Rosta bröd, toppa med tomatsblandning.",
       "ratings":[],
-      "image": "https://example.com/bruschetta.jpg"
+      "image": "http://example.com/bruschetta.jpg"
     },
     {
       "id": 4,
@@ -91,7 +92,7 @@ const recipes = [
       "ingredients": ["Tortillas", "Ost", "Paprika", "Lök", "Kyckling (valfritt)"],
       "instructions": "Fyll tortillas med ost, grönsaker och kyckling; tillaga tills osten smälter.",
       "ratings":[],
-      "image": "https://example.com/quesadillas.jpg"
+      "image": "http://example.com/quesadillas.jpg"
     },
     {
       "id": 5,
@@ -101,7 +102,7 @@ const recipes = [
       "ingredients": ["Kyckling", "Koriander", "Lime", "Vitlök", "Kryddor"],
       "instructions": "Marinera kycklingen, tillaga tills den är klar.",
       "ratings":[],
-      "image": "https://example.com/cilantro_lime_chicken.jpg"
+      "image": "http://example.com/cilantro_lime_chicken.jpg"
     },
     {
       "id": 6,
@@ -111,7 +112,7 @@ const recipes = [
       "ingredients": ["Tomater", "Lök", "Koriander", "Lime", "Jalapeños"],
       "instructions": "Hacka ingredienserna, blanda och servera.",
       "ratings":[],
-      "image": "https://example.com/salsa.jpg"
+      "image": "http://example.com/salsa.jpg"
     },
     {
       "id": 7,
@@ -121,7 +122,7 @@ const recipes = [
       "ingredients": ["Blandade grönsaker", "Sojasås", "Ingefära", "Vitlök"],
       "instructions": "Stek grönsaker med sås tills de är möra.",
       "ratings":[],
-      "image": "https://example.com/vegetable_stir_fry.jpg"
+      "image": "http://example.com/vegetable_stir_fry.jpg"
     },
     {
       "id": 8,
@@ -131,7 +132,7 @@ const recipes = [
       "ingredients": ["Kyckling", "Teriyakisås", "Broccoli", "Ris"],
       "instructions": "Stek kyckling och grönsaker i teriyakisås, servera över ris.",
       "ratings":[],
-      "image": "https://example.com/teriyaki_chicken.jpg"
+      "image": "http://example.com/teriyaki_chicken.jpg"
     },
     {
         "id": 9,
@@ -141,7 +142,7 @@ const recipes = [
         "ingredients": ["Nötkött", "Broccoli", "Sojasås", "Ingefära", "Vitlök"],
         "instructions": "Stek nötkött och broccoli med sås tills de är genomstekta.",
         "ratings":[],
-        "image": "https://example.com/beef_broccoli_stir_fry.jpg"
+        "image": "http://example.com/beef_broccoli_stir_fry.jpg"
     }
       
   ]

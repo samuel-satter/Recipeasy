@@ -3,7 +3,7 @@
         <h1 class="u-heading">{{ recipe.name }}</h1>
         <div class="u-container">
             <div class="u-description main">{{ recipe.instructions }}</div>
-            <div class="u-image"><img :src="recipe.image" alt="picture"></div>
+            <!-- <div class="u-image"><img :src="recipe.image" alt="picture"></div> -->
             <div class="u-amountofingredients main">
                 {{ recipe.ingredients.length }} {{ nrOfIngredients }} |
                 {{ recipe.time }} {{ time }}
@@ -16,34 +16,38 @@
             </div>
         </div>
         <div class = "br"></div>
-        <RatingComponent :recipe-id="recipe.id" :ratings="recipe.ratings"></RatingComponent>
+        <!-- <RatingComponent :recipe-id="recipe.RecipeId" :ratings="recipe.ratings"></RatingComponent> -->
     </main>
 </template>
 <script>
-import RatingComponent from './RatingComponent.vue';
+// import RatingComponent from './RatingComponent.vue';
 export default {
+    props: ['id'],
     components: {
-        RatingComponent
+        // RatingComponent
     },
     data() {
         return {
             recipe: "",
-            id: "",
-            time: "MINUTER",
-            nrOfIngredients: "INGREDIENSER"
+            recipeId: "",
+            time: "",
+            nrOfIngredients: "ingredienser"
         }
     },
     methods: {
         fetchData() {
             console.log("hello this line was accessed",this.$route.params.id)
             this.recipe = null;
-            fetch(`https://localhost:3000/recipes/${this.$route.params.id}`)
+            fetch(`http://localhost:3000/recipe?id=${this.$route.params.id}`)
                 .then((response) => response.json())
                 .then((data) => { this.recipe = data });
         }
     },
     mounted() {
         this.fetchData()
+    },
+    updated() {
+        console.log("recipe", this.recipe)
     }
 }
 </script>

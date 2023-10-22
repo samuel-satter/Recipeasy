@@ -4,18 +4,21 @@
             <div id="search-icon">
                 <img id="searchImg" src="../assets/search.png">
             </div>
-            <input type="text" id="searchbox" placeholder="Sök bland dina favoritrecept . . ." required>
-            <input type="submit" value="Sök" id="btn" @click="fetchData">
+            <input type="text" v-model="searchInput" id="searchbox" placeholder="Sök bland recept" required>
+            <!-- <input type="submit" value="Sök" id="btn" @click="fetchData()"> -->
+              <RouterLink class="router-link" :to="'/recipe/' + searchInput">till recept</RouterLink>
+            <!-- <input type="submit" value="sök" > -->
         </div>
-        <main class="recipe-grid" v-for="recipe in recipes" :key="recipe.id">
+        <main class="recipe-grid">
             <div class="grid-container gradient-background">
                 <h2 class="recipe-head">
-                    <RouterLink class="router-link" :to="`/recipe/${recipe.id}`">{{ recipe.name }}</RouterLink>
+                    {{ recipes.name }}
+                    <!-- <RouterLink class="router-link" :to="`/recipe/${recipe.id}`">{{ recipe.name }}</RouterLink> -->
                     <!-- <RatingComponent :avg-rating="`${recipe.ratings.length}`"> -->
                     <!-- </RatingComponent> -->
                 </h2>
-                <div class="recipe-img"><img :src="recipe.image" alt="picture"></div>
-                <div class="recipe-main main">{{ recipe.instructions }}</div>
+                <!-- <div class="recipe-img"><img :src="recipe.image" alt="picture"></div> -->
+                <!-- <div class="recipe-main main">{{ recipe.instructions }}</div> -->
                 <!-- <div class="recipe-foot main">
                     {{ recipe.ingredients.length }} {{ nrOfIngredients }} |
                     {{ recipe.time }}
@@ -26,6 +29,8 @@
 </template>
 
 <script>
+import { RouterLink } from 'vue-router';
+
 // import RatingComponent from './RatingComponent.vue'
 export default {
     components: {
@@ -35,16 +40,25 @@ export default {
         return {
             recipes: [],
             time: "MINUTER",
-            nrOfIngredients: "INGREDIENSER"
+            nrOfIngredients: "INGREDIENSER",
+            searchInput: null
         }
     },
     methods: {
-        async fetchData() {
+            fetchData() {
             let inputSearchBox = document.getElementById("searchbox").value;
             this.recipes = null;
             console.log("klsdfjasdklfjasdklfklasdjljkasdfjfklasdfjkladsö", inputSearchBox)
-            const response = await fetch(`http://localhost:3000/recipe?id=${inputSearchBox}`);
-            this.recipes = await response.json();
+            fetch(`http://localhost:3000/recipe?id=${this.searchInput}`)
+            .then((response) => { 
+                const responseJson = response.json()
+                console.log("response json", responseJson)
+                return responseJson;})
+                .then((data) => { 
+                    console.log("data", data)
+                    this.recipes = data });
+    
+            console.log(this.recipes)
         }
     }
 }
