@@ -32,17 +32,27 @@ const server = http.createServer((req, res) => {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
       res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+
+      res.end(JSON.stringify(categories))
+      // res.end(categories)
+
+      // const categoryID = reqUrl.pathname.split('/').pop(); 
+      // const categoryRecipes = recipes.filter(recipe => recipe.categoryID === categoryID);
     
-      const categoryID = reqUrl.pathname.split('/').pop(); 
-      const categoryRecipes = recipes.filter(recipe => recipe.categoryID === categoryID);
+      // if (categoryRecipes.length > 0) {
+      //   res.end(JSON.stringify(categoryRecipes));
+      // } else {
+      //   res.end('No recipes found for the specified category');
+      // }
     
-      if (categoryRecipes.length > 0) {
-        res.end(JSON.stringify(categoryRecipes));
-      } else {
-        res.end('No recipes found for the specified category');
-      }
-    
-    } else {
+    } else if (reqUrl.pathname.startsWith('/categoryrecipes')) {
+      const categoryQuery= url.parse(reqUrl, true).query
+      const recipesInCategory = recipes.filter(recipe => recipe.categoryID === parseInt(categoryQuery.id))  
+      res.setHeader('Content-Type', 'application/json')
+      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
+      res.end(JSON.stringify(recipesInCategory))
+    } 
+    else {
         res.statusCode = 404;
         res.setHeader('Content-Type', 'text/plain')
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')

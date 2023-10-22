@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from './views/HomePage.vue'
 import CategoryPage from './views/CategoryPage.vue'
 import RecipePage from './views/RecipePage.vue'
+import CategoryRecipePage from './views/CategoryRecipePage.vue'
 
 const routes = [
     {
@@ -10,9 +11,14 @@ const routes = [
         component: HomePage
     },
     {
-        path: '/category/:categoryId',
+        path: '/category',
         name: 'category',
         component: CategoryPage
+    },
+    {
+        path: '/categoryrecipe/:id/:name',
+        name: 'categoryrecipe',
+        component: CategoryRecipePage
     },
     {
         path: '/recipe/:id',

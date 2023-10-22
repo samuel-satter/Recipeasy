@@ -1,14 +1,14 @@
 <template>
     <HeaderComponent></HeaderComponent>
-    <CategoryListComponent></CategoryListComponent>
+    <CategoryComponent></CategoryComponent>
 </template>
 <script>
 import HeaderComponent from '../components/HeaderComponent.vue';
-import CategoryListComponent from '../components/CategoryListComponent.vue';
+import CategoryComponent from '../components/CategoryComponent.vue';
 export default {
     components: {
         HeaderComponent,
-        CategoryListComponent
+        CategoryComponent
     }
 }
 </script>
