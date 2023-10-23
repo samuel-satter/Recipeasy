@@ -10,6 +10,8 @@
             <div>
                 {{ recipe.ingredients.length }}
                 {{ recipe.time }}
+                {{ recipe.ratings }}
+                {{ recipe.comments }}
             </div>
         </div>
     </div>

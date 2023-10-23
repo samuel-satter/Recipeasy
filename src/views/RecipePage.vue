@@ -1,7 +1,6 @@
 <template>
 <RecipeComponent></RecipeComponent>
 <!-- <CommentComponent></CommentComponent> -->
-<RatingComponent></RatingComponent>
 </template>
 
 <script>
@@ -11,8 +10,7 @@ import RecipeComponent from '../components/RecipeComponent.vue';
 export default{
     components: {
         // CommentComponent,
-        RecipeComponent,
-        RatingComponent
+        RecipeComponent
     }
 }
 </script>

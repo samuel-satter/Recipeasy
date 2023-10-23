@@ -2,8 +2,9 @@
   <div>
     <span>
       <p v-if="rated">Tack för din röst!</p>
-      <!-- <StarRating :rating="this.averageRating" @rating-selected="setRating"></StarRating> -->
-      <button @click="submitRating" :disabled="!selectedRating">Submit Rating</button>
+      <!-- <StarRating :rating="this.averageRating" @rating-selected="setRating"></StarRating>  -->
+      <input type="text" v-model="score">
+      <button @click="submitRating">Submit Rating</button>
     </span>
   </div>
 </template>
@@ -16,7 +17,8 @@ export default {
     return {
       averageRating: 0,
       rated: false,
-      selectedRating: null
+      selectedRating: null,
+      score: null
     }
   },
   methods: {
@@ -30,8 +32,8 @@ export default {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ 
-          id: 1,  
-          rating: 3
+          id: this.$route.params.id,  
+          rating: this.score
         }),
       });
 
@@ -42,7 +44,7 @@ export default {
       }
     },
     async getRating() {
-      const res = await fetch(`http://localhost:3000/recipes/${this.id}`);
+      const res = await fetch(`http://localhost:3000/recipe?id=${this.$route.params.id}`);
       const data = await res.json();
       this.averageRating = data.rating;
     },
@@ -56,7 +58,7 @@ export default {
     this.getRating();
   },
   mounted() {
-    this.submitRating();
+    // this.submitRating();
   },
   components: {
     // StarRating

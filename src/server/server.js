@@ -34,8 +34,14 @@ app.post('/recipes/', (req, res) => {
   console.log("POSTED")
   console.log(req.body.id, req.body.rating)
   const recipesInCategory = recipes.filter(recipe => recipe.id === parseInt(req.body.id))
-  recipesInCategory[0].ratings.push(req.body.rating)
+  recipesInCategory[0].ratings.push(parseInt(req.body.rating))
   console.log(recipesInCategory)
+  res.send();
+})
+
+app.post('/comment', (req,res) => {
+  const recipesInCategory = recipes.filter(recipe => recipe.id === parseInt(req.body.id))
+  recipesInCategory[0].comments.push(req.body.comment)
   res.send();
 })
 
@@ -53,7 +59,8 @@ const recipes = [
       "ingredients": ["Färska tomater", "Mozzarellacheese", "Basilikablad", "Balsamvinäger"],
       "instructions": "Arrangera skivade tomater och mozzarella, toppa med basilikablad, ringla över balsamvinäger.",
       "ratings":[],
-      "image": "http://example.com/caprese_sallad.jpg"
+      "image": "http://example.com/caprese_sallad.jpg",
+      "comments":[]
     },
     {
       "id": 2,
@@ -63,8 +70,9 @@ const recipes = [
       "ingredients": ["Spaghetti", "Vitlök", "Olivolja", "Chiliflingor", "Persilja"],
       "instructions": "Stek vitlök i olja, blanda med kokt pasta.",
       "ratings":[],
-      "image": "http://example.com/pasta_aglio_e_olio.jpg"
-    },
+      "image": "http://example.com/pasta_aglio_e_olio.jpg",
+      "comments":[]
+     },
     {
       "id": 3,
       "name": "Bruschetta",
@@ -73,7 +81,8 @@ const recipes = [
       "ingredients": ["Baguette", "Tomater", "Basilika", "Vitlök", "Balsamvinäger"],
       "instructions": "Rosta bröd, toppa med tomatsblandning.",
       "ratings":[],
-      "image": "http://example.com/bruschetta.jpg"
+      "image": "http://example.com/bruschetta.jpg",
+      "comments":[]
     },
     {
       "id": 4,
@@ -83,7 +92,8 @@ const recipes = [
       "ingredients": ["Tortillas", "Ost", "Paprika", "Lök", "Kyckling (valfritt)"],
       "instructions": "Fyll tortillas med ost, grönsaker och kyckling; tillaga tills osten smälter.",
       "ratings":[],
-      "image": "./Quesadillas.jpg"
+      "image": "./Quesadillas.jpg",
+      "comments":[]
     },
     {
       "id": 5,
@@ -93,7 +103,8 @@ const recipes = [
       "ingredients": ["Kyckling", "Koriander", "Lime", "Vitlök", "Kryddor"],
       "instructions": "Marinera kycklingen, tillaga tills den är klar.",
       "ratings":[],
-      "image": "http://example.com/cilantro_lime_chicken.jpg"
+      "image": "http://example.com/cilantro_lime_chicken.jpg",
+      "comments":[]
     },
     {
       "id": 6,
@@ -103,7 +114,8 @@ const recipes = [
       "ingredients": ["Tomater", "Lök", "Koriander", "Lime", "Jalapeños"],
       "instructions": "Hacka ingredienserna, blanda och servera.",
       "ratings":[],
-      "image": "http://example.com/salsa.jpg"
+      "image": "http://example.com/salsa.jpg",
+      "comments":[]
     },
     {
       "id": 7,
@@ -113,7 +125,8 @@ const recipes = [
       "ingredients": ["Blandade grönsaker", "Sojasås", "Ingefära", "Vitlök"],
       "instructions": "Stek grönsaker med sås tills de är möra.",
       "ratings":[],
-      "image": "http://example.com/vegetable_stir_fry.jpg"
+      "image": "http://example.com/vegetable_stir_fry.jpg",
+      "comments":[]
     },
     {
       "id": 8,
@@ -123,7 +136,8 @@ const recipes = [
       "ingredients": ["Kyckling", "Teriyakisås", "Broccoli", "Ris"],
       "instructions": "Stek kyckling och grönsaker i teriyakisås, servera över ris.",
       "ratings":[],
-      "image": "http://example.com/teriyaki_chicken.jpg"
+      "image": "http://example.com/teriyaki_chicken.jpg",
+      "comments":[]
     },
     {
         "id": 9,
@@ -133,7 +147,8 @@ const recipes = [
         "ingredients": ["Nötkött", "Broccoli", "Sojasås", "Ingefära", "Vitlök"],
         "instructions": "Stek nötkött och broccoli med sås tills de är genomstekta.",
         "ratings":[],
-        "image": "http://example.com/beef_broccoli_stir_fry.jpg"
+        "image": "http://example.com/beef_broccoli_stir_fry.jpg",
+        "comments":[]
     }
       
   ]
