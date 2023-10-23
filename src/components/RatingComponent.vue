@@ -31,7 +31,7 @@ export default {
         },
         body: JSON.stringify({ 
           id: 1,  
-          rating: 3 
+          rating: 3
         }),
       });
 
