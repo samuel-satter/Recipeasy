@@ -3,7 +3,7 @@
         <h1 class="u-heading">{{ recipe.name }}</h1>
         <div class="u-container">
             <div class="u-description main">{{ recipe.instructions }}</div>
-            <!-- <div class="u-image"><img :src="recipe.image" alt="picture"></div> -->
+            <div class="u-image"><img :src="recipe.image" alt="picture"></div>
             <div class="u-amountofingredients main">
                 {{ recipe.ingredients.length }} {{ nrOfIngredients }} |
                 {{ recipe.time }} {{ time }}
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class = "br"></div>
-        <!-- <RatingComponent :recipe-id="recipe.RecipeId" :ratings="recipe.ratings"></RatingComponent> -->
+        <!-- <RatingComponent :recipe-id="recipe.id" :ratings="recipe.ratings"></RatingComponent> -->
     </main>
 </template>
 <script>
@@ -40,7 +40,9 @@ export default {
             this.recipe = null;
             fetch(`http://localhost:3000/recipe?id=${this.$route.params.id}`)
                 .then((response) => response.json())
-                .then((data) => { this.recipe = data });
+                .then((data) => {  
+                    console.log("data: ", data) 
+                    this.recipe = data[0] });
         }
     },
     mounted() {

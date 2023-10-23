@@ -8,7 +8,7 @@ GET {{baseurl}}/recipes HTTP/1.1
 POST {{baseurl}}/recipes HTTP/1.1
 Content-Type: application/json
   
-POST {{baseurl}}/recipes HTTP/1.1
+POST {{baseurl}}/recipes/9/rating HTTP/1.1
 Content-Type: application/json
   
   

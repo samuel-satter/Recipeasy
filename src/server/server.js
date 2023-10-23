@@ -1,68 +1,49 @@
 const http = require('http');
 const url = require('url')
+const express = require('express')
+const cors = require('cors')
+const app = express()
+const port = 3000
+app.use(cors({
+  origin: 'http://localhost:5173'
+}))
+app.use(express.json())
+app.get('/recipes', (req, res) => {
+  console.log('baseUrl', req.protocol, req.path)
+  console.log(recipes)
+  res.send(recipes)
+})
 
-const server = http.createServer((req, res) => {
-    const reqUrl = url.parse(req.url, true)
-    const query= url.parse(req.url, true).query
-    console.log(reqUrl.pathname)
-    console.log("query = ", query)
-    if(reqUrl.pathname.startsWith('/recipes')) {
-        res.statusCode = 200;
-        console.log("hello im here")
-        res.setHeader('Content-Type', 'application/json')
-        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
-        res.end(JSON.stringify(recipes))
-    } else if(reqUrl.pathname.startsWith('/recipe')) {
-        console.log(query)
-        const recipe = recipes.find(r => r.id === parseInt(query.id));
-        console.log("recipe:", recipe)
-        if(recipe) {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json')
-            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
-            res.end(JSON.stringify(recipe))
-            console.log("sending recipe", recipe)
-        } else {
-            res.statusCode = 404;
-            res.setHeader('Content-Type', 'text/plain')
-            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
-            res.end('Recipe not found')
-        }
-    } else if (reqUrl.pathname.startsWith('/categories')) {
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/json');
-      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+app.get('/recipe', (req, res) => {
+  console.log("im here")
+  const filteredRecipes = recipes.filter(r => r.id === parseInt(req.query.id))
+  // res.send(filteredRecipes)
+  res.end(JSON.stringify(filteredRecipes))
+})
 
-      res.end(JSON.stringify(categories))
-      // res.end(categories)
+app.get('/categories/', (req, res) => {
+  res.send(categories)
+})
 
-      // const categoryID = reqUrl.pathname.split('/').pop(); 
-      // const categoryRecipes = recipes.filter(recipe => recipe.categoryID === categoryID);
-    
-      // if (categoryRecipes.length > 0) {
-      //   res.end(JSON.stringify(categoryRecipes));
-      // } else {
-      //   res.end('No recipes found for the specified category');
-      // }
-    
-    } else if (reqUrl.pathname.startsWith('/categoryrecipes')) {
-      const categoryQuery= url.parse(reqUrl, true).query
-      const recipesInCategory = recipes.filter(recipe => recipe.categoryID === parseInt(categoryQuery.id))  
-      res.setHeader('Content-Type', 'application/json')
-      res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
-      res.end(JSON.stringify(recipesInCategory))
-    } 
-    else {
-        res.statusCode = 404;
-        res.setHeader('Content-Type', 'text/plain')
-        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
-        res.end('not found')
-    }
-});
-const port = 3000;
-server.listen(port, 'localhost', () => {
-    console.log(`Server running at http://localhost:${port}/`);
-});
+app.get('/categoryrecipes', (req, res) => {
+  const recipesInCategory = recipes.filter(recipe => recipe.categoryID === parseInt(req.query.id))
+  res.end(JSON.stringify(recipesInCategory))
+})
+
+app.post('/recipes/', (req, res) => {
+  console.log("POSTED")
+  console.log(req.body.id, req.body.rating)
+  const recipesInCategory = recipes.filter(recipe => recipe.id === parseInt(req.body.id))
+  recipesInCategory[0].ratings.push(req.body.rating)
+  console.log(recipesInCategory)
+  res.send();
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port: ${port}`)
+})
+
+
 const recipes = [
     {
       "id": 1,
@@ -102,7 +83,7 @@ const recipes = [
       "ingredients": ["Tortillas", "Ost", "Paprika", "Lök", "Kyckling (valfritt)"],
       "instructions": "Fyll tortillas med ost, grönsaker och kyckling; tillaga tills osten smälter.",
       "ratings":[],
-      "image": "http://example.com/quesadillas.jpg"
+      "image": "./Quesadillas.jpg"
     },
     {
       "id": 5,

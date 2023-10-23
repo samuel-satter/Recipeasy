@@ -1,12 +1,11 @@
-import { RouterLink } from 'vue-router';
 <template>
     <div v-if="recipes">
         <div v-for="recipe in recipes" :key="recipe.id">
             <h2>Recept:
                 <RouterLink class="router-link" :to="`/recipe/${recipe.id}`">{{ recipe.name }}</RouterLink>
-                <RatingComponent :avgRating="`${recipe.avgRating}`"></RatingComponent>
+                <!-- <RatingComponent :avgRating="`${recipe.avgRating}`"></RatingComponent> -->
             </h2>
-            <div><img :src="recipe.imageUrl" alt="recipe image"></div>
+            <div><img :src="recipe.image" alt="recipe image"></div>
             <div>{{ recipe.instructions }}</div>
             <div>
                 {{ recipe.ingredients.length }}
@@ -17,10 +16,10 @@ import { RouterLink } from 'vue-router';
 </template>
 
 <script>
-import RatingComponent from './RatingComponent.vue'
+// import RatingComponent from './RatingComponent.vue'
 export default {
     components: {
-            RatingComponent
+            // RatingComponent
         },
     data() {
         return {
