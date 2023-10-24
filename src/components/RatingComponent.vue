@@ -1,15 +1,30 @@
 <template>
   <div>
     <span>
-      <p v-if="rated">Tack för din röst!</p>
-      <!-- <StarRating :rating="this.averageRating" @rating-selected="setRating"></StarRating>  -->
-      <input type="text" v-model="score">
-      <button @click="submitRating">Submit Rating</button>
+      <hr/>
+      <div class="rate" v-if="!rated">
+       <h4>Vad tyckte du om receptet?</h4>
+      <input type="radio" id="star5" name="rate" value="5" v-model="score" @change="submitRating"/>
+      <label for="star5" title="text">5 stars</label>
+      <input type="radio" id="star4" name="rate" value="4" v-model="score" @change="submitRating"/>
+      <label for="star4" title="text">4 stars</label>
+      <input type="radio" id="star3" name="rate" value="3" v-model="score" @change="submitRating"/>
+      <label for="star3" title="text">3 stars</label>
+      <input type="radio" id="star2" name="rate" value="2" v-model="score" @change="submitRating"/>
+      <label for="star2" title="text">2 stars</label>
+      <input type="radio" id="star1" name="rate" value="1" v-model="score" @change="submitRating"/>
+      <label for="star1" title="text">1 star</label>
+    </div>
+    <h2 v-else class="text">
+     Tack för din röst
+    </h2>
     </span>
   </div>
 </template>
 
 <script>
+// import RecipeComponent from './RecipeComponent.vue';
+
 // import StarRating from 'vue-star-rating'
 
 export default {
@@ -26,6 +41,7 @@ export default {
       this.selectedRating = newRating;
     },
     async submitRating() {
+      console.log("Rating is not null", this.rating)
       const res = await fetch(`http://localhost:3000/recipes/`, {
         method: 'POST',
         headers: {
@@ -65,3 +81,52 @@ export default {
   }
 }
 </script>
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    margin-bottom: 4%;
+    text-align: left;
+    position: relative;
+}
+.rate:not(:checked) > input {
+    position:relative;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:left;
+    margin-bottom: 50%;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:10x;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+.text {
+  color: green;
+}
+</style>

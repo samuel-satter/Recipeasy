@@ -1,12 +1,9 @@
 <template>
     <div class="main-grid">
         <div class="search-box">
-            <div id="search-icon">
-                <img id="searchImg" src="../assets/search.png">
-            </div>
-            <input type="text" v-model="searchInput" id="searchbox" placeholder="Sök bland recept" required>
+            <input type="text" v-model="searchInput" id="searchbox" placeholder="Sök och gå till recept" required>
             <!-- <input type="submit" value="Sök" id="btn" @click="fetchData()"> -->
-              <RouterLink class="router-link" :to="'/recipe/' + searchInput">till recept</RouterLink>
+              <RouterLink class="router-link" :to="'/recipe/' + searchInput">Till recept</RouterLink>
             <!-- <input type="submit" value="sök" > -->
         </div>
         <main class="recipe-grid">
@@ -63,3 +60,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.router-link {
+    background-color: gray;
+    margin-left: 1%;
+}
+</style>

@@ -8,6 +8,10 @@
   font-weight: normal;
 }
 
+* {
+  font-family: 'Montserrat', sans-serif; 
+}
+
 a,
 .green {
   text-decoration: none;
@@ -20,6 +24,29 @@ a,
     background-color: hsla(160, 100%, 37%, 0.2);
   }
 }
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #031809; 
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+.button:hover {
+transform: scale(1.2);
+}
+
+img {
+  width: 15%;
+  height: auto;
+  vertical-align: middle;
+  border-radius: 10%;
+}
+
 
 @media (min-width: 1024px) {
   body {

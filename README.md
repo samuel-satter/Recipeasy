@@ -33,3 +33,8 @@ npm run build
 ```sh
 npm run lint
 ```
+### Make sure both CORS and Express is installed to be able to run the server
+```sh
+npm install cors
+npm install express
+```

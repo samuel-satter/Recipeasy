@@ -1,5 +1,3 @@
-const http = require('http');
-const url = require('url')
 const express = require('express')
 const cors = require('cors')
 const app = express()
@@ -9,15 +7,17 @@ app.use(cors({
 }))
 app.use(express.json())
 app.get('/recipes', (req, res) => {
-  console.log('baseUrl', req.protocol, req.path)
-  console.log(recipes)
   res.send(recipes)
 })
 
+app.get('/matching-recipes', (req, res) => {
+  const filteredRecipesByName = recipes.filter(r => r.name.toLowerCase().includes(req.query.searchString.toLowerCase()))
+  console.log(filteredRecipesByName)
+  res.send(filteredRecipesByName)
+}) 
+
 app.get('/recipe', (req, res) => {
-  console.log("im here")
   const filteredRecipes = recipes.filter(r => r.id === parseInt(req.query.id))
-  // res.send(filteredRecipes)
   res.end(JSON.stringify(filteredRecipes))
 })
 
@@ -31,22 +31,27 @@ app.get('/categoryrecipes', (req, res) => {
 })
 
 app.post('/recipes/', (req, res) => {
-  console.log("POSTED")
-  console.log(req.body.id, req.body.rating)
   const recipesInCategory = recipes.filter(recipe => recipe.id === parseInt(req.body.id))
   recipesInCategory[0].ratings.push(parseInt(req.body.rating))
-  console.log(recipesInCategory)
+  const sumCurrentRatings = recipesInCategory[0].ratings.reduce((partialSum, a) => partialSum + a, 0)
+  const average = sumCurrentRatings / recipesInCategory[0].ratings.length
+  recipesInCategory[0].averageRating = average.toFixed(2)
   res.send();
 })
 
 app.post('/comment', (req,res) => {
   const recipesInCategory = recipes.filter(recipe => recipe.id === parseInt(req.body.id))
-  recipesInCategory[0].comments.push(req.body.comment)
+  const commentObject = {
+    "name": req.body.name,
+    "comment": req.body.comment,
+    "date": new Date()
+  }
+  recipesInCategory[0].comments.push(commentObject)
   res.send();
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port: ${port}`)
+  console.log(`App listening on port: ${port}`)
 })
 
 
@@ -59,6 +64,7 @@ const recipes = [
       "ingredients": ["Färska tomater", "Mozzarellacheese", "Basilikablad", "Balsamvinäger"],
       "instructions": "Arrangera skivade tomater och mozzarella, toppa med basilikablad, ringla över balsamvinäger.",
       "ratings":[],
+      "averageRating": 0.0,
       "image": "http://example.com/caprese_sallad.jpg",
       "comments":[]
     },
@@ -70,6 +76,7 @@ const recipes = [
       "ingredients": ["Spaghetti", "Vitlök", "Olivolja", "Chiliflingor", "Persilja"],
       "instructions": "Stek vitlök i olja, blanda med kokt pasta.",
       "ratings":[],
+      "averageRating": 0.0,
       "image": "http://example.com/pasta_aglio_e_olio.jpg",
       "comments":[]
      },
@@ -81,6 +88,7 @@ const recipes = [
       "ingredients": ["Baguette", "Tomater", "Basilika", "Vitlök", "Balsamvinäger"],
       "instructions": "Rosta bröd, toppa med tomatsblandning.",
       "ratings":[],
+      "averageRating": 0.0,
       "image": "http://example.com/bruschetta.jpg",
       "comments":[]
     },
@@ -92,7 +100,8 @@ const recipes = [
       "ingredients": ["Tortillas", "Ost", "Paprika", "Lök", "Kyckling (valfritt)"],
       "instructions": "Fyll tortillas med ost, grönsaker och kyckling; tillaga tills osten smälter.",
       "ratings":[],
-      "image": "./Quesadillas.jpg",
+      "averageRating": 0.0,
+      "image": "https://images.unsplash.com/photo-1628838233717-be047a0b54fb?auto=format&fit=crop&q=80&w=2056&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "comments":[]
     },
     {
@@ -103,6 +112,7 @@ const recipes = [
       "ingredients": ["Kyckling", "Koriander", "Lime", "Vitlök", "Kryddor"],
       "instructions": "Marinera kycklingen, tillaga tills den är klar.",
       "ratings":[],
+      "averageRating": 0.0,
       "image": "http://example.com/cilantro_lime_chicken.jpg",
       "comments":[]
     },
@@ -114,6 +124,7 @@ const recipes = [
       "ingredients": ["Tomater", "Lök", "Koriander", "Lime", "Jalapeños"],
       "instructions": "Hacka ingredienserna, blanda och servera.",
       "ratings":[],
+      "averageRating": 0.0,
       "image": "http://example.com/salsa.jpg",
       "comments":[]
     },
@@ -125,6 +136,7 @@ const recipes = [
       "ingredients": ["Blandade grönsaker", "Sojasås", "Ingefära", "Vitlök"],
       "instructions": "Stek grönsaker med sås tills de är möra.",
       "ratings":[],
+      "averageRating": 0.0,
       "image": "http://example.com/vegetable_stir_fry.jpg",
       "comments":[]
     },
@@ -136,6 +148,7 @@ const recipes = [
       "ingredients": ["Kyckling", "Teriyakisås", "Broccoli", "Ris"],
       "instructions": "Stek kyckling och grönsaker i teriyakisås, servera över ris.",
       "ratings":[],
+      "averageRating": 0.0,
       "image": "http://example.com/teriyaki_chicken.jpg",
       "comments":[]
     },
@@ -147,6 +160,7 @@ const recipes = [
         "ingredients": ["Nötkött", "Broccoli", "Sojasås", "Ingefära", "Vitlök"],
         "instructions": "Stek nötkött och broccoli med sås tills de är genomstekta.",
         "ratings":[],
+        "averageRating": 0.0,
         "image": "http://example.com/beef_broccoli_stir_fry.jpg",
         "comments":[]
     }

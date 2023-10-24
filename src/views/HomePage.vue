@@ -5,7 +5,7 @@
             <CategoryListComponent></CategoryListComponent>
         </div>
         <div class="flex-item-two">
-            <SearchComponent></SearchComponent>
+            <GoToRecipeComponent></GoToRecipeComponent>
             <RecipesComponent></RecipesComponent>
         </div>
     </div>
@@ -15,14 +15,14 @@
 import HeaderComponent from '../components/HeaderComponent.vue';
 import RecipesComponent from '../components/RecipesComponent.vue';
 import CategoryListComponent from '../components/CategoryListComponent.vue';
-import SearchComponent from '../components/SearchComponent.vue';
+import GoToRecipeComponent from '../components/GoToRecipeComponent.vue';
 
 export default {
     components: {
         HeaderComponent,
         RecipesComponent,
         CategoryListComponent,
-        SearchComponent
+        GoToRecipeComponent
     }
 };
 </script>

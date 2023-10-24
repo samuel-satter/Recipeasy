@@ -1,16 +1,28 @@
 <template>
+    <div>
+        <input type="text" v-model="searchText">
+    </div>
     <div v-if="recipes">
-        <div v-for="recipe in recipes" :key="recipe.id">
+        <div v-for="recipe in recipes" :key="recipe.id" class="recipe-card">
             <h2>Recept:
                 <RouterLink class="router-link" :to="`/recipe/${recipe.id}`">{{ recipe.name }}</RouterLink>
-                <!-- <RatingComponent :avgRating="`${recipe.avgRating}`"></RatingComponent> -->
             </h2>
             <div><img :src="recipe.image" alt="recipe image"></div>
             <div>{{ recipe.instructions }}</div>
             <div>
-                {{ recipe.ingredients.length }}
+                Mängden ingredienser:
+               {{ recipe.ingredients.length }}                
+            </div>
+            <div>
+                Tid:
                 {{ recipe.time }}
-                {{ recipe.ratings }}
+            </div>
+            <div>
+                Rating:
+                {{ recipe.averageRating }}
+            </div>
+            <div>
+                Comments:
                 {{ recipe.comments }}
             </div>
         </div>
@@ -18,20 +30,19 @@
 </template>
 
 <script>
-// import RatingComponent from './RatingComponent.vue'
 export default {
     components: {
-            // RatingComponent
         },
     data() {
         return {
             recipes: "",
-            time: "min"
+            time: "min",
+            searchText: ""
         }
     },
     methods: {
     fetchData() {
-        fetch("http://localhost:3000/recipes")
+        fetch(`http://localhost:3000/matching-recipes?searchString=${this.searchText}`)
         .then((response) => response.json())
         .then((data) => {this.recipes = data})
     },
@@ -39,6 +50,17 @@ export default {
     mounted() {
         console.log("recipes component mounted")
     this.fetchData()
+    },
+    updated() {
+        this.fetchData()
     }
 }
 </script>
+
+<style>
+.recipe-card {
+    background-color: rgba(1, 25, 5, 0.17); 
+    border-radius: 2%; 
+    margin-top: 1.5%
+}
+</style>

@@ -2,9 +2,6 @@
     <main class="main-grid">
         <div class="search-box">
             <form>
-                <div id="search-icon">
-                    <img id="searchImg" src="../assets/search.png">
-                </div>
                 <div>
                     <input id="searchbox" v-model="searchBoxInput"
                         :placeholder="`Sök inom kategori ${this.$route.params.categoryId}`" name="search">
@@ -20,11 +17,11 @@
                     </RatingComponent>
                 </h2>
                 <div class="recipe-img"><img :src="recipe.image" alt="picture"></div>
-                <div class="recipe-main">{{ recipe.instructions }}</div>
                 <div class="recipe-foot">
                     {{ recipe.ingredients.length }} {{ nrOfIngredients }} |
                     {{ recipe.time }}
                 </div>
+                <div class="recipe-main">{{ recipe.instructions }}</div>
             </div>
         </div>
     </main>
