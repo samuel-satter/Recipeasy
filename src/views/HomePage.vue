@@ -1,5 +1,5 @@
 <template>
-    <HeaderComponent>Recept under 30 minuter</HeaderComponent>
+    <HeaderComponent></HeaderComponent>
     <div class="flex-container">
         <div class="flex-item-one">
             <CategoryListComponent></CategoryListComponent>

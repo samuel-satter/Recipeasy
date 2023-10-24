@@ -1,7 +1,4 @@
 <template>
-  <header>
-    <RouterLink to="/">Home</RouterLink>
-  </header>
   <main>
     <RouterView />
   </main>

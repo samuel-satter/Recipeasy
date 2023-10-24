@@ -62,10 +62,16 @@ const recipes = [
       "categoryID": 1,
       "time": "10 minuter",
       "ingredients": ["Färska tomater", "Mozzarellacheese", "Basilikablad", "Balsamvinäger"],
-      "instructions": "Arrangera skivade tomater och mozzarella, toppa med basilikablad, ringla över balsamvinäger.",
+      "instructions": [
+        "Skär färska tomater i tunna skivor.",
+        "Skär mozzarellacheese i skivor.",
+        "Arrangera skivade tomater och mozzarella på en tallrik.",
+        "Toppa med färska basilikablad.",
+        "Ringla över balsamvinäger som dressing."
+      ],
       "ratings":[],
       "averageRating": 0.0,
-      "image": "http://example.com/caprese_sallad.jpg",
+      "image": "https://images.unsplash.com/photo-1622637012640-83ff490e189f?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "comments":[]
     },
     {
@@ -74,10 +80,16 @@ const recipes = [
       "categoryID": 1,
       "time": "15 minuter",
       "ingredients": ["Spaghetti", "Vitlök", "Olivolja", "Chiliflingor", "Persilja"],
-      "instructions": "Stek vitlök i olja, blanda med kokt pasta.",
+      "instructions": [
+        "Koka spagetti enligt anvisningarna på förpackningen.",
+        "Hetta upp olivolja i en stekpanna och tillsätt finhackad vitlök och chiliflingor efter smak. Stek tills vitlöken är gyllenbrun, ta bort från värmen.",
+        "När spagettin är klar, häll av vattnet och blanda den med den stekta vitlöken och olivoljan.",
+        "Strö över färsk hackad persilja.",
+        "Servera genast."
+      ],
       "ratings":[],
       "averageRating": 0.0,
-      "image": "http://example.com/pasta_aglio_e_olio.jpg",
+      "image": "https://img.freepik.com/free-photo/plate-pasta-with-homemade-pesto-sauce_114579-11386.jpg?w=740&t=st=1698178122~exp=1698178722~hmac=73de5987bba8abd9a2e67bb2e91008cd32db2950243c22e3ad9892ed63cf9f2d",
       "comments":[]
      },
     {
@@ -86,10 +98,17 @@ const recipes = [
       "categoryID": 1,
       "time": "15 minuter",
       "ingredients": ["Baguette", "Tomater", "Basilika", "Vitlök", "Balsamvinäger"],
-      "instructions": "Rosta bröd, toppa med tomatsblandning.",
+      "instructions": [
+        "Skär baguetten i skivor och rosta dem i ugnen tills de är gyllenbruna.",
+        "Hacka tomaterna, basilikan och vitlöken fint och blanda dem i en skål.",
+        "Tillsätt balsamvinäger till tomatblandningen och blanda väl.",
+        "När brödet är rostat, ta det ut ur ugnen och låt det svalna något.",
+        "Toppa varje brödskiva med tomatsblandningen.",
+        "Servera omedelbart."
+      ],
       "ratings":[],
       "averageRating": 0.0,
-      "image": "http://example.com/bruschetta.jpg",
+      "image": "https://images.unsplash.com/photo-1572695157360-1153aaad020b?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "comments":[]
     },
     {
@@ -98,7 +117,15 @@ const recipes = [
       "categoryID": 2,
       "time": "10 minuter",
       "ingredients": ["Tortillas", "Ost", "Paprika", "Lök", "Kyckling (valfritt)"],
-      "instructions": "Fyll tortillas med ost, grönsaker och kyckling; tillaga tills osten smälter.",
+      "instructions": [
+        "Förbered fyllningen genom att skära paprika, lök och eventuell kyckling i små bitar.",
+        "Placera en tortilla på en het stekpanna eller platta och lägg ett lager ost på den ena sidan av tortillan.",
+        "Tillsätt din valda fyllning (paprika, lök och/eller kyckling) ovanpå osten.",
+        "Vik över tortillan så att den täcker fyllningen och bilda en halvmåneform.",
+        "Tillaga quesadillan tills båda sidor är gyllenbruna och osten smälter, ungefär 2-3 minuter per sida.",
+        "Ta bort quesadillan från värmen och skär den i kilar.",
+        "Servera omedelbart och njut!"
+      ],
       "ratings":[],
       "averageRating": 0.0,
       "image": "https://images.unsplash.com/photo-1628838233717-be047a0b54fb?auto=format&fit=crop&q=80&w=2056&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -110,10 +137,14 @@ const recipes = [
       "categoryID": 2,
       "time": "15 minuter",
       "ingredients": ["Kyckling", "Koriander", "Lime", "Vitlök", "Kryddor"],
-      "instructions": "Marinera kycklingen, tillaga tills den är klar.",
+      "instructions": [
+        "Marinera kycklingen med hackad koriander, limejuice, finhackad vitlök och dina valda kryddor.",
+        "Tillaga kycklingen i en stekpanna eller på grillen tills den är helt klar och saftig, vanligtvis 6-8 minuter per sida beroende på tjockleken.",
+        "Servera genast och njut av den fräscha smaken."
+      ],
       "ratings":[],
       "averageRating": 0.0,
-      "image": "http://example.com/cilantro_lime_chicken.jpg",
+      "image": "https://thumbs.dreamstime.com/z/lime-cilantro-garlic-mustard-olive-oil-marinated-grilled-chicken-breast-dark-background-top-view-lime-cilantro-garlic-mustard-283238728.jpg?w=768",
       "comments":[]
     },
     {
@@ -122,10 +153,15 @@ const recipes = [
       "categoryID": 2,
       "time": "10 minuter",
       "ingredients": ["Tomater", "Lök", "Koriander", "Lime", "Jalapeños"],
-      "instructions": "Hacka ingredienserna, blanda och servera.",
+      "instructions": [
+        "Skär tomaterna, löken och jalapeños i små bitar.",
+        "Blanda de hackade ingredienserna tillsammans i en skål.",
+        "Tillsätt finhackad koriander och limejuice i blandningen och rör om väl.",
+        "Låt salsan stå i kylen i några minuter för att förstärka smakerna innan servering."
+      ],
       "ratings":[],
       "averageRating": 0.0,
-      "image": "http://example.com/salsa.jpg",
+      "image": "https://images.unsplash.com/photo-1529566260205-50597c058463?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "comments":[]
     },
     {
@@ -134,10 +170,15 @@ const recipes = [
       "categoryID": 3,
       "time": "15 minuter",
       "ingredients": ["Blandade grönsaker", "Sojasås", "Ingefära", "Vitlök"],
-      "instructions": "Stek grönsaker med sås tills de är möra.",
+      "instructions": [
+        "Skär de blandade grönsakerna i bitar.",
+        "Hetta upp olja i en stekpanna och tillsätt finhackad ingefära och vitlök.",
+        "Tillsätt grönsakerna och stek dem tills de är möra, tillsätt sedan sojasås och rör om väl.",
+        "Servera omedelbart."
+      ],
       "ratings":[],
       "averageRating": 0.0,
-      "image": "http://example.com/vegetable_stir_fry.jpg",
+      "image": "https://plus.unsplash.com/premium_photo-1664472637341-3ec829d1f4df?auto=format&fit=crop&q=80&w=1925&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "comments":[]
     },
     {
@@ -146,10 +187,13 @@ const recipes = [
       "categoryID": 3,
       "time": "15 minuter",
       "ingredients": ["Kyckling", "Teriyakisås", "Broccoli", "Ris"],
-      "instructions": "Stek kyckling och grönsaker i teriyakisås, servera över ris.",
+      "instructions": [
+        "Stek kycklingen och broccoli i teriyakisås tills de är genomstekta.",
+        "Servera över ris och njut!"
+      ],
       "ratings":[],
       "averageRating": 0.0,
-      "image": "http://example.com/teriyaki_chicken.jpg",
+      "image": "https://images.unsplash.com/photo-1636401870585-a8852371e84a?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "comments":[]
     },
     {
@@ -158,10 +202,15 @@ const recipes = [
         "categoryID": 3,
         "time": "15 minuter",
         "ingredients": ["Nötkött", "Broccoli", "Sojasås", "Ingefära", "Vitlök"],
-        "instructions": "Stek nötkött och broccoli med sås tills de är genomstekta.",
+        "instructions": [
+          "Skär nötköttet och broccolin i bitar.",
+          "Hetta upp olja i en stekpanna och tillsätt finhackad ingefära och vitlök.",
+          "Tillsätt nötkött och broccoli och stek dem tills de är genomstekta, tillsätt sedan sojasås och rör om väl.",
+          "Servera omedelbart."
+        ],
         "ratings":[],
         "averageRating": 0.0,
-        "image": "http://example.com/beef_broccoli_stir_fry.jpg",
+        "image": "https://plus.unsplash.com/premium_photo-1664478238082-3df93e48c491?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmVlZiUyMGFuZCUyMGJyb2Njb2xpJTIwc3RpciUyMGZyeXxlbnwwfHwwfHx8MA%3D%3D",
         "comments":[]
     }
       
@@ -171,7 +220,7 @@ const categories = [
     {
       "id": 1,
       "name": "Italiensk",
-      "description": "Deliciosa italienska recept."
+      "description": "Goda italienska recept."
     },
     {
       "id": 2,
